@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahid ❤️ Ashika</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #ff9aaf, #ff5c91, #ffc1d5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container {
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.heart {
+  font-size: 65px;
+  animation: beat 1s infinite;
+}
+
+@keyframes beat {
+  50% { transform: scale(1.2); }
+}
+
+h1 {
+  color: white;
+  font-size: 30px;
+  text-shadow: 2px 3px 5px #d6336c;
+}
+
+p {
+  color: white;
+  font-size: 17px;
+}
+
+.buttons {
+  position: relative;
+  height: 150px;
+  margin-top: 25px;
+}
+
+button {
+  border: none;
+  border-radius: 40px;
+  padding: 15px 35px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 5px 15px #b52b60;
+  transition: transform 0.3s;
+}
+
+#yes {
+  background: #ff1744;
+  color: white;
+  position: relative;
+  z-index: 5;
+  transform-origin: center;
+}
+
+#no {
+  background: white;
+  color: #ff1744;
+  position: absolute;
+  left: 55%;
+  top: 65px;
+  z-index: 10;
+}
+
+#success {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #ff1744, #ff80ab);
+  color: white;
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#success h1 {
+  font-size: 38px;
+}
+
+#success .heart {
+  font-size: 100px;
+}
+
+.float {
+  position: fixed;
+  bottom: -30px;
+  animation: rise 5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+
+  <div class="heart">❤️</div>
+
+  <h1>Hey Ashika! ❤️</h1>
+
+  <p>Sahid has something special to ask you... 🥺</p>
+
+  <h2 style="color:white">Will You Be Mine? 💍</h2>
+
+  <div class="buttons">
+    <button id="yes" onclick="acceptLove()">YES ❤️</button>
+    <button id="no" onclick="growYes()">NO 💔</button>
+  </div>
+
+</div>
+
+<div id="success">
+
+  <div class="heart">💖</div>
+
+  <h1>Sahid ❤️ Ashika</h1>
+
+  <h2>I Knew It! 😍</h2>
+
+  <h2>You Made My Day! ❤️</h2>
+
+  <p>Forever Starts With You! 💍</p>
+
+  <div style="font-size:45px">😘💕🌹</div>
+
+</div>
+
+<script>
+
+let count = 0;
+
+function growYes() {
+
+  count++;
+
+  const yes = document.getElementById("yes");
+  const no = document.getElementById("no");
+
+  // YES button gets bigger
+  let scale = 1 + count * 0.35;
+
+  yes.style.transform = `scale(${scale})`;
+
+  // NO button changes position
+  no.style.left = Math.random() * 65 + "%";
+  no.style.top = Math.random() * 100 + "px";
+
+  // YES covers the entire screen
+  if (count >= 8) {
+
+    yes.style.position = "fixed";
+    yes.style.inset = "0";
+    yes.style.width = "100vw";
+    yes.style.height = "100vh";
+    yes.style.borderRadius = "0";
+    yes.style.transform = "none";
+    yes.style.fontSize = "55px";
+
+    no.style.display = "none";
+
+  }
+
+}
+
+function acceptLove() {
+
+  document.getElementById("main").style.display = "none";
+
+  document.getElementById("success").style.display = "flex";
+
+}
+
+// Floating hearts animation
+
+setInterval(() => {
+
+  const heart = document.createElement("div");
+
+  heart.className = "float";
+  heart.innerHTML = "❤️";
+
+  heart.style.left = Math.random() * 100 + "vw";
+
+  heart.style.fontSize =
+    (15 + Math.random() * 25) + "px";
+
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+
+}, 500);
+
+</script>
+
+</body>
+</html>
